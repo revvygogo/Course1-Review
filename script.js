@@ -30,7 +30,6 @@ if (fishVotesCount){
     fishVotesCell.textContent = fishVotesCount; 
 }
 
-
 // -----------
 
 // button for doggo
@@ -44,6 +43,10 @@ cattoVoteBtn.textContent = "Vote for Catto!";
 // button for fishy
 let fishyVoteBtn = document.createElement('button');
 fishyVoteBtn.textContent = "Vote for Fishy!";
+
+// button to reset all counts
+let resetBtn = document.createElement('button');
+resetBtn.textContent = "Reset ALL Counts!"; 
 
 // -----------
 
@@ -59,6 +62,9 @@ catDiv.append(cattoVoteBtn);
 let fishDiv = document.querySelector('#fishy');
 fishDiv.append(fishyVoteBtn);
 
+let containerDiv = document.querySelector('#voting-table');
+containerDiv.append(resetBtn);
+
 // -----------
 
 // click event button for doggo
@@ -67,7 +73,8 @@ doggoVoteBtn.addEventListener('click', function(){
     dogVotesCount = dogVotesCount + 1;
     dogVotesCell.textContent = dogVotesCount;
     localStorage.setItem('dog-votes', dogVotesCount);
-    //totalVotesCell.textContent = totalVotesCount;
+    totalVotesCell.textContent = totalVotesCount;
+    //console.log(totalVotesCount)
 })
 
 // click event button for catto
@@ -84,6 +91,21 @@ fishyVoteBtn.addEventListener('click', function(){
     let fishVotesCount = parseInt(fishVotesCell.textContent);
     fishVotesCount = fishVotesCount + 1;
     fishVotesCell.textContent = fishVotesCount;
+    localStorage.setItem('fish-votes', fishVotesCount);
+})
+
+// click event button for resetting
+resetBtn.addEventListener('click', function(){
+    window.alert('ALL counts will be deleted');
+    dogVotesCell.textContent = 0;
+    dogVotesCount = 0;
+    catVotesCell.textContent = 0;
+    catVotesCount = 0;
+    fishVotesCell.textContent = 0;
+    fishVotesCount = 0;
+    totalVotesCount = 0;
+    localStorage.setItem('dog-votes', dogVotesCount);
+    localStorage.setItem('cat-votes', catVotesCount);
     localStorage.setItem('fish-votes', fishVotesCount);
 })
 
