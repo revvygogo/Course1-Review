@@ -2,7 +2,7 @@
 let dogVotesCount = 0;
 let catVotesCount = 0;
 let fishVotesCount = 0;
-let totalVotesCount = dogVotesCount + catVotesCount + fishVotesCount;
+let totalVotesCount = 0;
 
 // table cells
 let dogVotesCell = document.querySelector('#doggo-votes');
@@ -10,7 +10,7 @@ let catVotesCell = document.querySelector('#catto-votes');
 let fishVotesCell = document.querySelector('#fishy-votes');
 let totalVotesCell = document.querySelector('#total-votes');
 
-// -----------
+// ----------------
 
 // pulls dog votes from local storage
 dogVotesCount = localStorage.getItem('dog-votes');
@@ -30,7 +30,7 @@ if (fishVotesCount){
     fishVotesCell.textContent = fishVotesCount; 
 }
 
-// -----------
+// ----------------
 
 // button for doggo
 let doggoVoteBtn = document.createElement('button');
@@ -48,7 +48,7 @@ fishyVoteBtn.textContent = "Vote for Fishy!";
 let resetBtn = document.createElement('button');
 resetBtn.textContent = "Reset ALL Counts!"; 
 
-// -----------
+// ----------------
 
 // append doggo button
 let dogDiv = document.querySelector('#doggo');
@@ -61,11 +61,11 @@ catDiv.append(cattoVoteBtn);
 // append fishy button
 let fishDiv = document.querySelector('#fishy');
 fishDiv.append(fishyVoteBtn);
-
+// append reset button
 let containerDiv = document.querySelector('#voting-table');
 containerDiv.append(resetBtn);
 
-// -----------
+// ----------------
 
 // click event button for doggo
 doggoVoteBtn.addEventListener('click', function(){
@@ -73,8 +73,9 @@ doggoVoteBtn.addEventListener('click', function(){
     dogVotesCount = dogVotesCount + 1;
     dogVotesCell.textContent = dogVotesCount;
     localStorage.setItem('dog-votes', dogVotesCount);
+    totalVotesCount = dogVotesCount + catVotesCount + fishVotesCount;
     totalVotesCell.textContent = totalVotesCount;
-    //console.log(totalVotesCount)
+    console.log("total count is ",totalVotesCount);
 })
 
 // click event button for catto
@@ -83,6 +84,9 @@ cattoVoteBtn.addEventListener('click', function(){
     catVotesCount = catVotesCount + 1;
     catVotesCell.textContent = catVotesCount;
     localStorage.setItem('cat-votes', catVotesCount);
+    totalVotesCount = dogVotesCount + catVotesCount + fishVotesCount;
+    totalVotesCell.textContent = totalVotesCount;
+    console.log("total count is ",totalVotesCount);
     
 })
 
@@ -92,6 +96,9 @@ fishyVoteBtn.addEventListener('click', function(){
     fishVotesCount = fishVotesCount + 1;
     fishVotesCell.textContent = fishVotesCount;
     localStorage.setItem('fish-votes', fishVotesCount);
+    totalVotesCount = dogVotesCount + catVotesCount + fishVotesCount;
+    totalVotesCell.textContent = totalVotesCount;
+    console.log("total count is ",totalVotesCount);
 })
 
 // click event button for resetting
@@ -103,6 +110,7 @@ resetBtn.addEventListener('click', function(){
     catVotesCount = 0;
     fishVotesCell.textContent = 0;
     fishVotesCount = 0;
+    totalVotesCell.textContent = 0;
     totalVotesCount = 0;
     localStorage.setItem('dog-votes', dogVotesCount);
     localStorage.setItem('cat-votes', catVotesCount);
